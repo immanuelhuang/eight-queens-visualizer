@@ -5,7 +5,7 @@ import initializeBoard from "./utils/initializeBoard.js";
 import isSolution from "./utils/isSolution.js";
 
 const BacktrackingBoard = (props) => {
-  const { solutions, setSolutions } = props;
+  const { timeInterval, solutions, setSolutions } = props;
   let queens = useRef([null, null, null, null, null, null, null, null]);
   const [board, setBoard] = useState(initializeBoard());
   let tempBoard = useRef();
@@ -29,7 +29,7 @@ const BacktrackingBoard = (props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       updateQueen();
-    }, 10);
+    }, timeInterval);
     return () => clearTimeout(timer);
   });
 

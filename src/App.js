@@ -8,9 +8,14 @@ import Chessboard from "chessboardjsx";
 const App = () => {
   const [solutions, setSolutions] = useState([]);
   const [algorithmState, setAlgorithmState] = useState("blank");
+  const [timeInterval, setTimeInterval] = useState(1);
 
+  const changeTimeInterval = (e) => {
+    setTimeInterval(e.target.value);
+  };
   return (
     <div>
+      <input type="range" min="1" max="5000" onChange={changeTimeInterval} />
       <button
         onClick={() => {
           setAlgorithmState("blank");
@@ -42,11 +47,19 @@ const App = () => {
       </button>
 
       {algorithmState === "permutation" ? (
-        <PermutationBoard solutions={solutions} setSolutions={setSolutions} />
+        <PermutationBoard
+          timeInterval={timeInterval}
+          solutions={solutions}
+          setSolutions={setSolutions}
+        />
       ) : null}
 
       {algorithmState === "backtracking" ? (
-        <BacktrackingBoard solutions={solutions} setSolutions={setSolutions} />
+        <BacktrackingBoard
+          timeInterval={timeInterval}
+          solutions={solutions}
+          setSolutions={setSolutions}
+        />
       ) : null}
 
       {algorithmState === "blank" ? <Chessboard showNotation={false} /> : null}

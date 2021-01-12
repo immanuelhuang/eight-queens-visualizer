@@ -5,7 +5,7 @@ import initializeBoard from "./utils/initializeBoard.js";
 import isSolution from "./utils/isSolution.js";
 
 const PermutationBoard = (props) => {
-  const { solutions, setSolutions } = props;
+  const { timeInterval, solutions, setSolutions } = props;
   let queens = useRef([0, 0, 0, 0, 0, 0, 0, 0]);
   const [board, setBoard] = useState(
     (() => {
@@ -37,7 +37,7 @@ const PermutationBoard = (props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       updateQueen();
-    }, 100);
+    }, timeInterval);
     return () => clearTimeout(timer);
   });
 
