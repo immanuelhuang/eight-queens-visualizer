@@ -4,8 +4,8 @@ import arrToFEN from "./utils/arrToFEN.js";
 import initializeBoard from "./utils/initializeBoard.js";
 import isSolution from "./utils/isSolution.js";
 
-const PermutationBoard = (props) => {
-  const { timeInterval, solutions, setSolutions } = props;
+const BruteforceBoard = (props) => {
+  const { started, timeInterval, solutions, setSolutions } = props;
   let queens = useRef([0, 0, 0, 0, 0, 0, 0, 0]);
   const [board, setBoard] = useState(
     (() => {
@@ -35,10 +35,12 @@ const PermutationBoard = (props) => {
   }
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      updateQueen();
-    }, timeInterval);
-    return () => clearTimeout(timer);
+    if (started) {
+      const timer = setTimeout(() => {
+        updateQueen();
+      }, timeInterval);
+      return () => clearTimeout(timer);
+    }
   });
 
   return (
@@ -52,4 +54,4 @@ const PermutationBoard = (props) => {
   );
 };
 
-export default PermutationBoard;
+export default BruteforceBoard;
