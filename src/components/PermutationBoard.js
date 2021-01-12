@@ -1,6 +1,5 @@
-import Chessground from "react-chessground";
+import Chessboard from "chessboardjsx";
 import { useState, useEffect, useRef } from "react";
-import "react-chessground/dist/styles/chessground.css";
 import arrToFEN from "./utils/arrToFEN.js";
 import initializeBoard from "./utils/initializeBoard.js";
 import isSolution from "./utils/isSolution.js";
@@ -38,18 +37,16 @@ const PermutationBoard = (props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       updateQueen();
-    }, 0);
+    }, 100);
     return () => clearTimeout(timer);
   });
 
   return (
     <div>
-      <h1>Permutations</h1>
-      <Chessground
-        animation={{ enabled: false }}
-        fen={arrToFEN(board)}
-        coordinates={false}
-        viewOnly={true}
+      <Chessboard
+        transitionDuration={0}
+        position={arrToFEN(board)}
+        notation={false}
       />
     </div>
   );
