@@ -38,9 +38,16 @@ const BacktrackingBoard = (props) => {
   return (
     <div>
       <Chessboard
+        calcWidth={({ screenWidth, screenHeight }) =>
+          Math.min(
+            screenWidth < 700 ? screenWidth / 1.1 : screenWidth / 1.5,
+            screenHeight / 1.3
+          )
+        }
         transitionDuration={0}
         position={arrToFEN(board)}
-        notation={false}
+        showNotation={false}
+        allowDrag={() => false}
       />
     </div>
   );
