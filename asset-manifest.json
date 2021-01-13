@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/eight-queens-visualizer/static/css/main.7e9f9a19.chunk.css",
-    "main.js": "/eight-queens-visualizer/static/js/main.25eb7724.chunk.js",
-    "main.js.map": "/eight-queens-visualizer/static/js/main.25eb7724.chunk.js.map",
+    "main.js": "/eight-queens-visualizer/static/js/main.94258c70.chunk.js",
+    "main.js.map": "/eight-queens-visualizer/static/js/main.94258c70.chunk.js.map",
     "runtime-main.js": "/eight-queens-visualizer/static/js/runtime-main.44baac8f.js",
     "runtime-main.js.map": "/eight-queens-visualizer/static/js/runtime-main.44baac8f.js.map",
     "static/js/2.6533ff99.chunk.js": "/eight-queens-visualizer/static/js/2.6533ff99.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.44baac8f.js",
     "static/js/2.6533ff99.chunk.js",
     "static/css/main.7e9f9a19.chunk.css",
-    "static/js/main.25eb7724.chunk.js"
+    "static/js/main.94258c70.chunk.js"
   ]
 }
