@@ -6,7 +6,20 @@ import BacktrackingBoard from "./components/BacktrackingBoard.js";
 import Chessboard from "chessboardjsx";
 
 const App = () => {
-  const [solutions, setSolutions] = useState([]);
+  const [solutions, setSolutions] = useState([
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+  ]);
   const [algorithm, setAlgorithm] = useState("blank");
   const [timeInterval, setTimeInterval] = useState(250);
   const [started, setStarted] = useState(false);
@@ -48,8 +61,8 @@ const App = () => {
             <Chessboard
               calcWidth={({ screenWidth, screenHeight }) =>
                 Math.min(
-                  screenWidth < 700 ? screenWidth / 1.1 : screenWidth / 1.5,
-                  screenHeight / 1.3
+                  screenWidth <= 850 ? screenWidth / 1.1 : screenWidth / 1.5,
+                  screenHeight / 1.5
                 )
               }
               showNotation={false}
@@ -57,6 +70,7 @@ const App = () => {
           ) : null}
           {algorithm === "brute-force" ? (
             <BruteforceBoard
+              setStarted={setStarted}
               started={started}
               timeInterval={timeInterval}
               solutions={solutions}
@@ -65,6 +79,8 @@ const App = () => {
           ) : null}
           {algorithm === "backtracking" ? (
             <BacktrackingBoard
+              setAlgorithm={setAlgorithm}
+              setStarted={setStarted}
               started={started}
               timeInterval={timeInterval}
               solutions={solutions}
@@ -76,29 +92,11 @@ const App = () => {
         <div
           id="controls-container"
           className={
-            useWindowDimensions().width < 700
+            useWindowDimensions().width <= 850
               ? "controls-container-small"
               : "controls-container-big"
           }
         >
-          <div id="start-stop-container">
-            <button
-              onClick={() => {
-                setStarted(true);
-              }}
-              disabled={started === true}
-            >
-              Start
-            </button>
-            <button
-              onClick={() => {
-                setStarted(false);
-              }}
-              disabled={started === false}
-            >
-              Stop
-            </button>
-          </div>
           <div id="range-container">
             <input
               type="range"
@@ -110,37 +108,55 @@ const App = () => {
                 setTimeInterval(e.target.value);
               }}
             />
-            <label for="interval-range">Speed</label>
+            <label htmlFor="interval-range">Speed</label>
           </div>
-          {/*
-          <button
-            onClick={() => {
-              setAlgorithm("blank");
-              setSolutions([]);
-            }}
-            disabled={algorithm === "blank" ? true : false}
+          <div id="start-stop-container">
+            <button
+              className="start-button"
+              onClick={() => {
+                setStarted(true);
+              }}
+              disabled={started === true}
+            >
+              Start
+            </button>
+            <button
+              className="stop-button"
+              onClick={() => {
+                setStarted(false);
+              }}
+              disabled={started === false}
+            >
+              Stop
+            </button>
+          </div>
+          <div
+            id="algorithms-container"
+            className={
+              useWindowDimensions().width <= 850
+                ? "algorithms-container-small"
+                : "algorithms-container-big"
+            }
           >
-            Blank
-          </button>
-          */}
-          <button
-            onClick={() => {
-              setAlgorithm("brute-force");
-              setSolutions([]);
-            }}
-            disabled={algorithm === "brute-force" ? true : false}
-          >
-            Brute Force
-          </button>
-          <button
-            onClick={() => {
-              setAlgorithm("backtracking");
-              setSolutions([]);
-            }}
-            disabled={algorithm === "backtracking" ? true : false}
-          >
-            Backtracking
-          </button>
+            <button
+              onClick={() => {
+                setAlgorithm("brute-force");
+                setSolutions([]);
+              }}
+              disabled={algorithm === "brute-force" ? true : false}
+            >
+              Brute Force
+            </button>
+            <button
+              onClick={() => {
+                setAlgorithm("backtracking");
+                setSolutions([]);
+              }}
+              disabled={algorithm === "backtracking" ? true : false}
+            >
+              Backtracking
+            </button>
+          </div>
         </div>
       </div>
 
@@ -150,7 +166,7 @@ const App = () => {
             <h2>Solution {index + 1}</h2>
             <Chessboard
               calcWidth={({ screenWidth }) =>
-                screenWidth <= 500 ? screenWidth / 2.5 : screenWidth / 3.5
+                screenWidth <= 850 ? screenWidth / 2.5 : screenWidth / 4.9
               }
               position={board}
               showNotation={false}
