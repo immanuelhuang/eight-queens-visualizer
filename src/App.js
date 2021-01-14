@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import uniqid from "uniqid";
 import BruteforceBoard from "./components/BruteforceBoard.js";
 import BacktrackingBoard from "./components/BacktrackingBoard.js";
+import IterativeRepairBoard from "./components/IterativeRepairBoard.js";
 import Chessboard from "chessboardjsx";
 
 const App = () => {
@@ -66,6 +67,16 @@ const App = () => {
           ) : null}
           {algorithm === "backtracking" ? (
             <BacktrackingBoard
+              setAlgorithm={setAlgorithm}
+              setStarted={setStarted}
+              started={started}
+              timeInterval={timeInterval}
+              solutions={solutions}
+              setSolutions={setSolutions}
+            />
+          ) : null}
+          {algorithm === "iterative-repair" ? (
+            <IterativeRepairBoard
               setAlgorithm={setAlgorithm}
               setStarted={setStarted}
               started={started}
@@ -142,6 +153,15 @@ const App = () => {
               disabled={algorithm === "backtracking" ? true : false}
             >
               Backtracking
+            </button>
+            <button
+              onClick={() => {
+                setAlgorithm("iterative-repair");
+                setSolutions([]);
+              }}
+              disabled={algorithm === "iterative-repair" ? true : false}
+            >
+              Iterative Repair
             </button>
           </div>
         </div>

@@ -83,6 +83,7 @@ h1 {
 
 #algorithms-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .algorithms-container-small {
@@ -92,6 +93,7 @@ h1 {
 
 .algorithms-container-small button {
   width: 45%;
+  margin: 10px 0;
 }
 
 .algorithms-container-big {
